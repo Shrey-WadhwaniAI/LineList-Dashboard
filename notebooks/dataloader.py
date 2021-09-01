@@ -32,7 +32,8 @@ def load_local(path):
     x = x.dropna(how='all')
     x.columns = x.iloc[0]
     x = x[1:]
-    x.columns = ['nan'] + [i.strip().lower() for i in x.columns if str(i)!="nan"] + ['nan']
+    #x.columns = ['nan'] + [i.strip().lower() for i in x.columns if str(i)!="nan"] + ['nan']
+    x.columns = [i.strip().lower() for i in x.columns if str(i)!="nan"]
     print (x.columns, len(x.columns))
     return x
 
@@ -93,8 +94,9 @@ def load_data(locations, source='local'):
     location_data = []
     for location in locations:
         if source=='local':
-            data_dir = "../data/Compiled/"
-            file_name = 'all_data_urban.csv'
+            data_dir = "../data/"
+            #file_name = 'all_data_urban.csv'
+            file_name = 'test_line_list.csv'
             if(location == ' Mumbai Suburban'):
                 file_name = 'Mumbai Suburban.csv'
             df = load_local(data_dir + file_name)
@@ -106,5 +108,6 @@ def load_data(locations, source='local'):
         df['source'] = location
         location_data.append(df)
     all_data = pd.concat(location_data)
-    print (len(all_data))
-    return all_data[:20]
+    print("all_data" + len(all_data))
+    #return all_data[:20]
+    return all_data

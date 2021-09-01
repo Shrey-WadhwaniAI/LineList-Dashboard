@@ -82,8 +82,12 @@ def prepare_data():
     return mumbai_data
 
 mumbai_data = prepare_data()
+print("LOOKATME")
+print(len(mumbai_data))
 input_data = filter_date(mumbai_data,start_date,end_date)
 input_data = filter_age(input_data,age_range)
+print("LOOKATME")
+print(len(input_data))
 df = two_pop_groups(input_data, pop_to_col[pop1], pop_to_col[pop2])
 st.write(df.head())
 # # print(df.head())
